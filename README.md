@@ -1,3 +1,5 @@
+![Node.js Package](https://github.com/davikawasaki/loopback-connector-postgresql-1/workflows/Node.js%20Package/badge.svg)
+
 Loopback PostgreSQL Connector
 =============
 
