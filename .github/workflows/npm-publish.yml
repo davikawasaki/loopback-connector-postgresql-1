@@ -56,12 +56,12 @@ jobs:
         with:
           args: 'Tests for project {{ EVENT_PAYLOAD.repository.full_name }} failed. Check and fix errors, then start deployment again.'
       - name: Discord notification for test cancel
-        if: ${{ canceled() }}
+        if: ${{ cancelled() }}
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: 'Tests for project {{ EVENT_PAYLOAD.repository.full_name }} have been canceled. Deployment progress will stop.'
+          args: 'Tests for project {{ EVENT_PAYLOAD.repository.full_name }} have been cancelled. Deployment progress will stop.'
       # - name: Upload node modules artifact
       #   uses: actions/upload-artifact@v2
       #   with:
@@ -123,9 +123,9 @@ jobs:
         with:
           args: 'Project {{ EVENT_PAYLOAD.repository.full_name }} deployment has failed. Check and fix errors, then start deployment again.'
       - name: Discord notification for test cancel
-        if: ${{ canceled() }}
+        if: ${{ cancelled() }}
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: 'Project {{ EVENT_PAYLOAD.repository.full_name }} deployment has been canceled and will not be available in a new package version.'
+          args: 'Project {{ EVENT_PAYLOAD.repository.full_name }} deployment has been cancelled and will not be available in a new package version.'
