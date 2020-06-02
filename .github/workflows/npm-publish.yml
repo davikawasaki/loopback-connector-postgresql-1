@@ -22,7 +22,7 @@ jobs:
         with:
           postgresql version: 'latest'
           postgresql db: 'test'
-          postgresql port: 4656
+          postgresql port: '4656'
           postgresql user: 'postgres'
           postgresql password: 'postgres'
       - name: Wait / Sleep
