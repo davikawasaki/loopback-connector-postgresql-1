@@ -18,6 +18,7 @@ jobs:
         with:
           node-version: 8
       - run: npm install
+      - run: source setup.sh localhost 4655 postgres postgres test
       - run: npm test
       - name: Upload node modules artifact
         uses: actions/upload-artifact@v2
