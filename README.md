@@ -5,38 +5,9 @@ This loopback module is the PostgreSQL connector for the LoopBack framework. [Po
 
 Original Author: Strongloop IBM
 
-Updated Author: Let's Comunica - fabio@letscomunica.com.br
-
 For more information, see the [documentation](http://loopback.io/doc/en/lb3/PostgreSQL-connector.html).
 
 NOTE: The PostgreSQL connector requires PostgreSQL 8.x or 9.x.
-
-**LAST VERSION: 0.0.3**
-
-Updates
--------
-
-Made a modification? Test it at least in one project before submiting a version. It still needs unit testing and CI with projects. After everything seems perfectly up-to-date, run the following steps:
-
-1\. Commit and push your updates using Let's Bitbucket credentials
-
-2\. Change and commit a new tag version (always check and update the last version here and in package.json):
-
-```bash
-$ git tag -a vX.X.X -m "version_message"
-```
-
-3\. Push the new tag version to remote repository:
-
-```bash
-$ git push origin vX.X.X  # Version needs to be the same from commit
-```
-
-4\. Run npm installation with the newest version:
-
-```bash
-  npm install --save git+ssh://git@bitbucket.org/letscomunicadev/loopback-lets-postgresql-connector.git#vX.X.X
-```
 
 Fork History
 -------
@@ -59,7 +30,7 @@ Installation
 In your application root directory, enter this command to install the connector:
 
 ```shell
-$ npm install --save git+ssh://git@bitbucket.org/letscomunicadev/loopback-lets-postgresql-connector.git#v0.0.3
+$ npm install --save git://github.com/davikawasaki/loopback-postgresql-connector-1.git
 ```
 
 This installs the module from npm and adds it as a dependency to the application's `package.json` file.

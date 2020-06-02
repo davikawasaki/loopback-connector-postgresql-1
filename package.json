@@ -1,6 +1,6 @@
 {
-  "name": "loopback-connector-postgresql",
-  "version": "0.0.3",
+  "name": "@davikawasaki/loopback-connector-postgresql-1",
+  "version": "0.0.4",
   "description": "Loopback PostgreSQL Connector",
   "engines": {
     "node": ">=4"
@@ -38,9 +38,6 @@
     "should": "^8.0.2",
     "sinon": "^1.15.4"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/strongloop/loopback-connector-postgresql.git"
-  },
+  "repository": "git://github.com/davikawasaki/loopback-connector-postgresql-1.git",
   "license": "Artistic-2.0"
 }
