@@ -20,7 +20,7 @@ jobs:
       - run: npm install
       - uses: harmon758/postgresql-action@v1
         with:
-          postgresql version: 'latest'
+          postgresql version: '9.6'
           postgresql db: 'test'
           postgresql user: 'postgres'
           postgresql password: 'postgres'

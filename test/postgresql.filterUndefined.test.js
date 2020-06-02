@@ -60,6 +60,7 @@ describe('filter undefined fields', function() {
       Post.findOne({where: {id: p.id}}, function(err, p) {
         should.not.exist(err);
         p.defaultInt.should.be.equal(5);
+        console.log(p)
         should.not.exist(p.first);
         should.not.exist(p.second);
         should.exist(p.third);
@@ -94,6 +95,7 @@ describe('filter undefined fields', function() {
       p.id.should.be.equal(2);
       p.updateAttributes({first: 'null in third', third: null}, function(err, p) {
         Post.findOne({where: {id: 2}}, function(err, p) {
+          console.log(p)
           should.not.exist(err);
           p.defaultInt.should.be.equal(5);
           p.first.should.be.equal('null in third');
