@@ -54,6 +54,7 @@ describe('filter undefined fields', function() {
 
   it('should insert default value and \'third\' field', function(done) {
     var dflPost = new Post();
+    dflPost.first = null;
     dflPost.third = 3;
     dflPost.save(function(err, p) {
       should.not.exist(err);
