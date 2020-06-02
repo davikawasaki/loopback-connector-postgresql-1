@@ -81,5 +81,3 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
-        with:
-          args: 'Action called: {{ GITHUB_ACTION }}. The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed successfully as a Github Package.'
