@@ -22,7 +22,6 @@ jobs:
         with:
           postgresql version: 'latest'
           postgresql db: 'test'
-          postgresql port: '4656'
           postgresql user: 'postgres'
           postgresql password: 'postgres'
       - name: Wait / Sleep
@@ -33,7 +32,7 @@ jobs:
         uses: jwalton/gh-docker-logs@v1.0.0
       - name: Check running containers
         run: docker ps -a
-      - run: POSTGRESQL_HOST=localhost POSTGRESQL_PORT=4656 POSTGRESQL_USER=postgres POSTGRESQL_PASSWORD=postgres POSTGRESQL_DATABASE=test npm test
+      - run: source setup.sh localhost 5432 postgres postgres test
       - name: Upload node modules artifact
         uses: actions/upload-artifact@v2
         with:
