@@ -20,7 +20,7 @@ jobs:
       - run: npm install
       - uses: harmon758/postgresql-action@v1
         with:
-          postgresql version: '11'
+          postgresql version: 'latest'
           postgresql db: 'test'
           postgresql user: 'postgres'
           postgresql password: 'postgres'
@@ -32,7 +32,7 @@ jobs:
         uses: jwalton/gh-docker-logs@v1.0.0
       - name: Check running containers
         run: docker ps -a
-      - run: POSTGRESQL_HOST=localhost POSTGRESQL_PORT=5432 POSTGRESQL_USER=postgres POSTGRESQL_PASSWORD=postgres POSTGRESQL_DATABASE=test CI=true npm test
+      - run: POSTGRESQL_HOST=localhost POSTGRESQL_PORT=5432 POSTGRESQL_USER=postgres POSTGRESQL_PASSWORD=postgres POSTGRESQL_DATABASE=test npm test
       - name: Upload node modules artifact
         uses: actions/upload-artifact@v2
         with:
