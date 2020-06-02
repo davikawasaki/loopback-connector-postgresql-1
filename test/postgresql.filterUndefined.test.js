@@ -58,9 +58,10 @@ describe('filter undefined fields', function() {
     dflPost.save(function(err, p) {
       should.not.exist(err);
       Post.findOne({where: {id: p.id}}, function(err, p) {
+        console.log('should insert default value and \'third\' field')
+        console.log(p)
         should.not.exist(err);
         p.defaultInt.should.be.equal(5);
-        console.log(p)
         should.not.exist(p.first);
         should.not.exist(p.second);
         should.exist(p.third);
@@ -76,7 +77,11 @@ describe('filter undefined fields', function() {
       should.exist(p);
       p.id.should.be.equal(2);
       p.updateAttributes({first: 'one', third: 4}, function(err, p) {
+        console.log('should update \'first\' and \'third\' fields of record with id==2 to predefined values')
+        console.log(p)
         Post.findOne({where: {id: 2}}, function(err, p) {
+          console.log('should update \'first\' and \'third\' fields of record with id==2 to predefined values')
+          console.log(p)
           should.not.exist(err);
           p.defaultInt.should.be.equal(5);
           p.first.should.be.equal('one');
@@ -95,6 +100,7 @@ describe('filter undefined fields', function() {
       p.id.should.be.equal(2);
       p.updateAttributes({first: 'null in third', third: null}, function(err, p) {
         Post.findOne({where: {id: 2}}, function(err, p) {
+          console.log('should update \'third\' field of record with id==2 to null value')
           console.log(p)
           should.not.exist(err);
           p.defaultInt.should.be.equal(5);
