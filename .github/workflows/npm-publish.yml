@@ -18,8 +18,21 @@ jobs:
         with:
           node-version: 8
       - run: npm install
-      - run: source setup.sh localhost 4655 postgres postgres test
-      - run: npm test
+      - uses: harmon758/postgresql-action@v1
+        with:
+          postgresql version: '11'
+          postgresql db: 'test'
+          postgresql user: 'postgres'
+          postgresql password: 'postgres'
+      - name: Wait / Sleep
+        uses: jakejarvis/wait-action@v0.1.0
+        with:
+          time: '10s'
+      - name: Collect Docker Logs
+        uses: jwalton/gh-docker-logs@v1.0.0
+      - name: Check running containers
+        run: docker ps -a
+      - run: POSTGRESQL_HOST=localhost POSTGRESQL_PORT=5432 POSTGRESQL_USER=postgres POSTGRESQL_PASSWORD=postgres POSTGRESQL_DATABASE=test CI=true npm test
       - name: Upload node modules artifact
         uses: actions/upload-artifact@v2
         with:
