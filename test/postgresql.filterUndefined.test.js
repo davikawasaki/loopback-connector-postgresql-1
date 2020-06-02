@@ -61,6 +61,8 @@ describe('filter undefined fields', function() {
       Post.findOne({where: {id: p.id}}, function(err, p) {
         should.not.exist(err);
         p.defaultInt.should.be.equal(5);
+        console.log('--- line 64 ---')
+        console.log(p)
         should.not.exist(p.first);
         should.not.exist(p.second);
         should.exist(p.third);
@@ -77,6 +79,8 @@ describe('filter undefined fields', function() {
       p.id.should.be.equal(2);
       p.updateAttributes({first: 'one', third: 4}, function(err, p) {
         Post.findOne({where: {id: 2}}, function(err, p) {
+          console.log('--- line 82 ---')
+          console.log(p)
           should.not.exist(err);
           p.defaultInt.should.be.equal(5);
           p.first.should.be.equal('one');
@@ -95,6 +99,8 @@ describe('filter undefined fields', function() {
       p.id.should.be.equal(2);
       p.updateAttributes({first: 'null in third', third: null}, function(err, p) {
         Post.findOne({where: {id: 2}}, function(err, p) {
+          console.log('--- line 102 ---')
+          console.log(p)
           should.not.exist(err);
           p.defaultInt.should.be.equal(5);
           p.first.should.be.equal('null in third');
