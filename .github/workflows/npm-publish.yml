@@ -12,16 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Discord notification with commit
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: Ilshidur/action-discord@master
-      - name: Discord notification with commit
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: Ilshidur/action-discord@master
-        with:
-          args: '[INFO] Project {{ EVENT_PAYLOAD.repository.full_name }} is being tested for package deployment on Github Packages.'
+      # - name: Discord notification with commit
+      #   env:
+      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      #   uses: Ilshidur/action-discord@master
+      # - name: Discord notification to show a test start
+      #   env:
+      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      #   uses: Ilshidur/action-discord@master
+      #   with:
+      #     args: '[INFO] Project {{ EVENT_PAYLOAD.repository.full_name }} is being tested for package deployment on Github Packages.'
       - uses: actions/setup-node@v1
         with:
           node-version: 10
@@ -41,27 +41,27 @@ jobs:
       - name: Check running containers
         run: docker ps -a
       - run: POSTGRESQL_HOST=localhost POSTGRESQL_PORT=5432 POSTGRESQL_USER=postgres POSTGRESQL_PASSWORD=postgres POSTGRESQL_DATABASE=test CI=false npm test
-      - name: Discord notification for test success
-        if: ${{ success() }}
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: Ilshidur/action-discord@master
-        with:
-          args: '[SUCCESS] Tests for project {{ EVENT_PAYLOAD.repository.full_name }} executed succesfully. Package deployment on Github Packages will start.'
-      - name: Discord notification for test failure
-        if: ${{ failure() }}
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: Ilshidur/action-discord@master
-        with:
-          args: '[ERROR] Tests for project {{ EVENT_PAYLOAD.repository.full_name }} failed. Check and fix errors, then start deployment again.'
-      - name: Discord notification for test cancel
-        if: ${{ cancelled() }}
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: Ilshidur/action-discord@master
-        with:
-          args: '[WARNING] Tests for project {{ EVENT_PAYLOAD.repository.full_name }} have been cancelled. Deployment progress will stop.'
+      # - name: Discord notification for test success
+      #   if: ${{ success() }}
+      #   env:
+      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      #   uses: Ilshidur/action-discord@master
+      #   with:
+      #     args: '[SUCCESS] Tests for project {{ EVENT_PAYLOAD.repository.full_name }} executed succesfully. Package deployment on Github Packages will start.'
+      # - name: Discord notification for test failure
+      #   if: ${{ failure() }}
+      #   env:
+      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      #   uses: Ilshidur/action-discord@master
+      #   with:
+      #     args: '[ERROR] Tests for project {{ EVENT_PAYLOAD.repository.full_name }} failed. Check and fix errors, then start deployment again.'
+      # - name: Discord notification for test cancel
+      #   if: ${{ cancelled() }}
+      #   env:
+      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      #   uses: Ilshidur/action-discord@master
+      #   with:
+      #     args: '[WARNING] Tests for project {{ EVENT_PAYLOAD.repository.full_name }} have been cancelled. Deployment progress will stop.'
       # - name: Upload node modules artifact
       #   uses: actions/upload-artifact@v2
       #   with:
@@ -93,39 +93,39 @@ jobs:
           ref: ${{ github.ref }}
       - name: "cat package.json"
         run: cat ./package.json
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 10
-          registry-url: https://npm.pkg.github.com/
-      - name: "Automated Version Bump"
-        uses: "phips28/gh-action-bump-version@master"
-        with:
-          tag-prefix: ''
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: "cat package.json"
-        run: cat ./package.json
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      - name: Discord notification for test success
-        if: ${{ success() }}
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: Ilshidur/action-discord@master
-        with:
-          args: '[SUCCESS] Project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed successfully as a Github Package.'
-      - name: Discord notification for test failure
-        if: ${{ failure() }}
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: Ilshidur/action-discord@master
-        with:
-          args: '[ERROR] Project {{ EVENT_PAYLOAD.repository.full_name }} deployment has failed. Check and fix errors, then start deployment again.'
-      - name: Discord notification for test cancel
-        if: ${{ cancelled() }}
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: Ilshidur/action-discord@master
-        with:
-          args: '[WARNING] Project {{ EVENT_PAYLOAD.repository.full_name }} deployment has been cancelled and will not be available in a new package version.'
+      # - uses: actions/setup-node@v1
+      #   with:
+      #     node-version: 10
+      #     registry-url: https://npm.pkg.github.com/
+      # - name: "Automated Version Bump"
+      #   uses: "phips28/gh-action-bump-version@master"
+      #   with:
+      #     tag-prefix: ''
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: "cat package.json"
+      #   run: cat ./package.json
+      # - run: npm publish
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      # - name: Discord notification for test success
+      #   if: ${{ success() }}
+      #   env:
+      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      #   uses: Ilshidur/action-discord@master
+      #   with:
+      #     args: '[SUCCESS] Project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed successfully as a Github Package.'
+      # - name: Discord notification for test failure
+      #   if: ${{ failure() }}
+      #   env:
+      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      #   uses: Ilshidur/action-discord@master
+      #   with:
+      #     args: '[ERROR] Project {{ EVENT_PAYLOAD.repository.full_name }} deployment has failed. Check and fix errors, then start deployment again.'
+      # - name: Discord notification for test cancel
+      #   if: ${{ cancelled() }}
+      #   env:
+      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      #   uses: Ilshidur/action-discord@master
+      #   with:
+      #     args: '[WARNING] Project {{ EVENT_PAYLOAD.repository.full_name }} deployment has been cancelled and will not be available in a new package version.'
